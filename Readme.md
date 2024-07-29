@@ -1,33 +1,14 @@
-2022/01/05: Downloading links for the pre-trained models have been updated. Sorry for the wait.
+Pytorch code for the classification part of  ICMR 2019 paper [Context-Aware Embeddings for Automatic Art Analysis](https://arxiv.org/abs/1904.04985). Originates from this github repo: https://github.com/noagarcia/context-art-classification.
 
-## Context Embeddings for Art Classification
-
-Pytorch code for the classification part of our ICMR 2019 paper [Context-Aware Embeddings for Automatic Art Analysis](https://arxiv.org/abs/1904.04985). For the retrieval part, check [this other repository](https://github.com/noagarcia/context-art-retrieval). 
-
+Code from the ARTxAI paper (https://ieeexplore.ieee.org/document/10336532) has also been integrated, which originates from this github repo: https://github.com/Fuminides/context-art-classification.
 
 ### Setup
 
 1. Download dataset from [here](https://noagarcia.github.io/SemArt/).
 
-2. Clone the repository: 
-    
-    `git clone https://github.com/noagarcia/context-art-classification.git`
-
-3. Install dependencies:
-    - Python 2.7
-    - pytorch (`conda install pytorch=0.4.1 cuda90 -c pytorch`) 
-    - torchvision (`conda install torchvision`)
-    - visdom (check tutorial [here](https://github.com/noagarcia/visdom-tutorial))
-    - pandas (`conda install -c anaconda pandas`)
-    - gensim (`conda install -c anaconda gensim`)
-
-4. For the KGM model, download the pre-computed graph embeddings from [here](https://drive.google.com/file/d/1PSXmyqiDcsdTHBUWyoX5b1EMBQLhJxv-/view?usp=sharing), and save the file into the `Data/` directory.
+2. For the KGM model, download the pre-computed graph embeddings from [here](https://drive.google.com/file/d/1PSXmyqiDcsdTHBUWyoX5b1EMBQLhJxv-/view?usp=sharing), and save the file into the `Data/` directory.
 
 ### Train
-
-- To train MTL multi-classifier run:
-    
-    `python main.py --mode train --model mtl --dir_dataset $semart`
     
 - To train KGM classifier run:
     
@@ -37,18 +18,13 @@ Where `$semart` is the path to SemArt dataset and `$attribute` is the classifier
 
 ### Test
 
-- To test MTL multi-classifier run:
-    
-    `python main.py --mode test --model mtl --dir_dataset $semart`
-    
 - To test KGM classifier run:
     
     `python main.py --mode test --model kgm --att $attribute --dir_dataset $semart --model_path $model-file`
 
 Where `$semart` is the path to SemArt dataset, `$attribute` is the classifier type (i.e. `type`, `school`, `time`, or `author`), and `$model-file` is the path to the trained model.
 
-You can download our pre-trained models from:
-- [MTL](https://drive.google.com/file/d/1KOQgEksQH7sU5syl5Vv-SRilijzae5sP/view?usp=sharing)
+Pre-trained models available to download from:
 - [KGM Type](https://drive.google.com/file/d/1zLdvyy6gSw3ENAhLin6c1-DvnvJ9_CU9/view?usp=sharing)
 - [KGM School](https://drive.google.com/file/d/1h5sYNsINQRC4LtdoyMcRi16Ho6evx00n/view?usp=sharing)
 - [KGM Timeframe](https://drive.google.com/file/d/1QTsNQbQmQFUgRiWiYjvuPQrgtzL89Ynj/view?usp=sharing)
@@ -72,16 +48,7 @@ Classification results on SemArt:
 | KGM context-aware | **0.815** | 0.671 | 0.613 | **0.615** |  
 
 
-### Examples
-
-Paintings with the highest scores for each class:
-
-![example](https://github.com/noagarcia/context-art-classification/blob/master/examples/examples_type.png?raw=true
-)
-![example](https://github.com/noagarcia/context-art-classification/blob/master/examples/examples_school.png?raw=true
-)
-
-### Citation
+### Citations
 
 
 ```
@@ -91,7 +58,16 @@ Paintings with the highest scores for each class:
    booktitle = {Proceedings of the ACM International Conference on Multimedia Retrieval},
    year      = {2019},
 }
-``` 
+```
+```
+@InProceedings{Fuminides,
+   author    = {Javier Fumanal-Idocin and Andreu Perez and Oscar Cordon and H. Hagras and Humberto Bustince},
+   title     = {ArtxAI: Explainable Artificial Intelligence Curates Deep Representation Learning for Artistic Images using Fuzzy Techniques},
+   booktitle = {IEEE Transactions on Fuzzy Systems},
+   year      = {2023},
+}
+```
+
 
 [1]: http://researchdata.aston.ac.uk/380/
 [2]: https://github.com/facebookresearch/visdom
